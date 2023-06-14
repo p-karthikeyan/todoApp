@@ -3,13 +3,14 @@ const app=express()
 const cors=require('cors')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+require('dotenv').config()
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
 
 const mongoose=require('mongoose')
-const uri="mongodb+srv://karthik-2002:karthik2002@cluster.8oxgmsm.mongodb.net/mydb?retryWrites=true&w=majority"
+const uri=process.env.URI
 
 const Item=require('./models/itemschema')
 const User=require('./models/userschema')
@@ -18,11 +19,11 @@ mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(res=>{
-    app.listen(8080,()=>console.log('server is listening on port 8080..'))
+    app.listen(process.env.PORT || 8080,()=>console.log('server is listening on port 8080..'))
 }).catch(err=>{
     console.log(err)
 })
-const secretkey="eiuhfuirh832urefj2o83yhooajljp1#*u0u(U)"
+const secretkey=process.env.SECRET_KEY
 const generatetoken=id=>{
     return jwt.sign({_id:id},secretkey,{expiresIn:'1h'})
 }

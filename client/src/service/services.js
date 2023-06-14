@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiurl="http://localhost:8080"
+const apiurl="https://todo-list.onrender.com"
 
 export const getitems=(setitems,token)=>{
     axios.get(apiurl,{params:{tk:token}})
