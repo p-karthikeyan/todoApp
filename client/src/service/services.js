@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiurl="https://todo-list.onrender.com"
+const apiurl="https://todoapp-ib5e.onrender.com"
 
 export const getitems=(setitems,token)=>{
     axios.get(apiurl,{params:{tk:token}})
